@@ -1,10 +1,16 @@
 import React from 'react'
-import { Container} from 'react-bootstrap'
+import { Container, Row, Col} from 'react-bootstrap'
 
 function Footer() {
   return (
     <footer>
-        <Container>Footer</Container>
+        <Container>
+          <Row>
+            <Col className='text-center py-3'>
+             Copyright &copy; JOJO-MARKET
+            </Col>
+          </Row>
+        </Container>
 
     </footer>
   )
