@@ -1,33 +1,34 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import Rating from './Rating'
+import { Link } from 'react-router-dom'
 
 function Product({product}) {
   return (
     <Card className='my-3 p-3 rounded'>
-        <a href={`/product/${product._id}`}>
+        <Link to={`/product/${product._id}`}>
             {/* IMAGEN DEL PRODUCTO */}
-            <Card.Img src={product.image}>
+            <Card.Img src={product.image} style={{objectFit: 'cover', width: '250px', height: '260px', margin: '0 auto', display:'block'}}>
 
             </Card.Img>
              
-        </a>
+        </Link>
 {/* NOMBRE DEL PRODUCTO */}
-        <Card.Body>
-            <a href={'/product/${product._id}'}>
+        <Card.Body style={{ textAlign: 'center' }}>
+            <Link href={'/product/${product._id}'}>
                 <Card.Title as="div">
                      <strong>{product.name}</strong>
                 </Card.Title>
-            </a>
+            </Link>
 {/* PROMEDIO Y NUMERO DE RESENIAS */}
-            <Card.Text as="div">
+            <Card.Text as="div" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 <div className='my-3'>
                     <Rating value={product.rating} text={`${product.numReviews} reviews`} color={'#FF4200'}/>
                 </div>
                 
             </Card.Text>
 {/* PRECIO DEL PRODUCTO */}
-            <Card.Text as="h3">
+            <Card.Text as="h3" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 C${product.price}
             </Card.Text>
         </Card.Body>

@@ -45,7 +45,7 @@ const products = [
         'Llaveros de Kimetsu no Yaiba',
         'brand': 'Unknown',
         'price': 400,
-        'countInStock': 7,
+        'countInStock': 0,
         'rating': 4.5,
         'numReviews': 3,
     },
