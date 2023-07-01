@@ -8,7 +8,7 @@ function Header() {
       <Navbar expand="lg" className="bg-body-tertiary" bg="dark" data-bs-theme="dark" collapseOnSelect>
       <Container>
         <LinkContainer to='/'>
-        <Navbar.Brand>JOJO-MARKET</Navbar.Brand>
+        <Navbar.Brand> <img src={'jojomarke.png'} style={{width:'200px', height:'50px'}}></img> </Navbar.Brand>
         </LinkContainer>
   
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
