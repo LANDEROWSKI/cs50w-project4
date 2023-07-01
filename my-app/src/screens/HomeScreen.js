@@ -1,40 +1,43 @@
 import React, {useState, useEffect} from 'react'
 import { Row,Col } from 'react-bootstrap'
-
+import { listProducts } from '../actions/productActions'
 import Product from '../components/Product'
-import products from '../products'
-import axios from 'axios'
+import Loader from '../components/Loader'
+import Message from '../components/Message'
+import { useDispatch, useSelector } from 'react-redux'
+
 
 
 function HomeScreen() {
 
   /* Declaramos una variable de estado llamada products e inicializarla con un arreglo vacío []. Además, 
   asigna una función setProducts que se utilizará para actualizar el valor de products.*/ 
-  const[products, setProducts] = useState([])
+  const dispatch = useDispatch()
+  const productList = useSelector(state => state.productList)
+  const {error, loading, products} = productList
 
   useEffect(() =>{
+    dispatch(listProducts())
 
-    async function fetchProducts(){
-      const {data} = await axios.get('/api/products/')
-      setProducts(data)
-    }
 
-    fetchProducts()
-    
+  }, [dispatch])
 
-  }, [])
+
   return (
     <div>
       <h1>Ultimos productos agregados</h1>
-        <Row>
-            {products.map(product =>(
-
-                <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                    <Product product = {product} />
-                              
-                </Col>
+      {loading ? <Loader />
+        : error ? <Message variant='danger'>{error}</Message>  
+          :
+          <Row>
+            {products.map(product => (
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                <Product product={product}/>
+              
+              </Col>
             ))}
-        </Row>
+          </Row>
+      }
     </div>
   )
 }
